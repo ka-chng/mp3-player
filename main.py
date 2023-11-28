@@ -4,7 +4,6 @@ import time
 import tkinter.messagebox
 from tkinter import *
 from tkinter import filedialog
-
 from tkinter import ttk
 from ttkthemes import themed_tk as tk
 
@@ -15,7 +14,7 @@ root = tk.ThemedTk()
 root.get_themes()                 
 root.set_theme("equilux")        
 
-statusbar = ttk.Label(root, text="FileLife", relief=SUNKEN, anchor=W, font='Times 10 italic')
+statusbar = ttk.Label(root, text="FileLife", relief=SUNKEN, anchor=W, font='Serif 10 bold')
 statusbar.pack(side=BOTTOM, fill=X)
 
 menu_bar = Menu(root)
@@ -53,7 +52,7 @@ sub_menu.add_command(label="About Us", command=about_us)
 
 mixer.init()
 
-root.title("FileLife")
+root.title("Nothing currently playing")
 root.iconbitmap(r'images/FileLife.ico')
 
 left_frame = Frame(root)
@@ -139,7 +138,7 @@ def play_music():
             play_it = playlist[selected_song]
             mixer.music.load(play_it)
             mixer.music.play()
-            statusbar['text'] = "Playing music" + ' - ' + os.path.basename(play_it)
+            statusbar['text'] = "Playing song" + ' - ' + os.path.basename(play_it)
             show_details(play_it)
         except:
             tkinter.messagebox.showerror('File not found', 'FileLife could not find the file. Please check again')
@@ -227,4 +226,3 @@ def on_closing():
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
 root.mainloop()
-
