@@ -1,20 +1,19 @@
+from ttkthemes import themed_tk as tk
 import os
-import threading
 import time
+from mutagen.mp3 import MP3
 import tkinter.messagebox
 from tkinter import *
+import threading
 from tkinter import filedialog
 from tkinter import ttk
-from ttkthemes import themed_tk as tk
-
-from mutagen.mp3 import MP3
 from pygame import mixer
 
 root = tk.ThemedTk()
 root.get_themes()                 
 root.set_theme("equilux")        
 
-statusbar = ttk.Label(root, text="FileLife", relief=SUNKEN, anchor=W, font='Serif 10 bold')
+statusbar = ttk.Label(root, text="No song currently playing", relief=SUNKEN, anchor=W, font='Serif 10 bold')
 statusbar.pack(side=BOTTOM, fill=X)
 
 menu_bar = Menu(root)
@@ -52,7 +51,7 @@ sub_menu.add_command(label="About Us", command=about_us)
 
 mixer.init()
 
-root.title("Nothing currently playing")
+root.title("FileLife")
 root.iconbitmap(r'images/FileLife.ico')
 
 left_frame = Frame(root)
@@ -81,10 +80,10 @@ right_frame.pack(pady=30)
 top_frame = Frame(right_frame)
 top_frame.pack()
 
-length_label = ttk.Label(top_frame, text='Total Length : --:--')
+length_label = ttk.Label(top_frame, text='No song currently playing')
 length_label.pack(pady=5)
 
-current_time_label = ttk.Label(top_frame, text='Current Time : --:--', relief=GROOVE)
+current_time_label = ttk.Label(top_frame, text='No song currently playing', relief=GROOVE)
 current_time_label.pack()
 
 
@@ -102,7 +101,7 @@ def show_details(play_song):
     mins = round(mins)
     secs = round(secs)
     timeformat = '{:02d}:{:02d}'.format(mins, secs)
-    length_label['text'] = "Total Length" + ' - ' + timeformat
+    length_label['text'] = "Song Length" + ' - ' + timeformat
 
     t1 = threading.Thread(target=start_count, args=(total_length,))
     t1.start()
@@ -117,7 +116,7 @@ def start_count(t):
             mins = round(mins)
             secs = round(secs)
             timeformat = '{:02d}:{:02d}'.format(mins, secs)
-            current_time_label['text'] = "Current Time" + ' - ' + timeformat
+            current_time_label['text'] = "Elapsed" + ' - ' + timeformat
             time.sleep(1)
             current_time += 1
 
