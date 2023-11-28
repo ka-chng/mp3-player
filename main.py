@@ -11,7 +11,7 @@ from pygame import mixer
 
 root = tk.ThemedTk()
 root.get_themes()                 
-root.set_theme("equilux")        
+root.set_theme("black")        
 
 statusbar = ttk.Label(root, text="No song currently playing", relief=SUNKEN, anchor=W, font='Serif 10 bold')
 statusbar.pack(side=BOTTOM, fill=X)
@@ -190,32 +190,32 @@ middleframe.pack(pady=30, padx=30)
 
 playPhoto = PhotoImage(file='images/play.png')
 playBtn = ttk.Button(middleframe, image=playPhoto, command=play_music)
-playBtn.grid(row=0, column=0, padx=10)
+playBtn.grid(row=1, column=0, padx=10)
 
 stopPhoto = PhotoImage(file='images/stop.png')
 stopBtn = ttk.Button(middleframe, image=stopPhoto, command=stop_music)
-stopBtn.grid(row=0, column=1, padx=10)
+stopBtn.grid(row=2, column=0, padx=10)
 
 pausePhoto = PhotoImage(file='images/pause.png')
 pauseBtn = ttk.Button(middleframe, image=pausePhoto, command=pause_music)
-pauseBtn.grid(row=0, column=2, padx=10)
+pauseBtn.grid(row=3, column=0, padx=10)
 
 bottomframe = Frame(right_frame)
 bottomframe.pack()
 
 rewindPhoto = PhotoImage(file='images/rewind.png')
 rewindBtn = ttk.Button(bottomframe, image=rewindPhoto, command=rewind_music)
-rewindBtn.grid(row=0, column=0)
+rewindBtn.grid(row=4, column=0)
 
 mutePhoto = PhotoImage(file='images/mute.png')
 volumePhoto = PhotoImage(file='images/volume.png')
 volumeBtn = ttk.Button(bottomframe, image=volumePhoto, command=mute_music)
-volumeBtn.grid(row=0, column=1)
+volumeBtn.grid(row=5, column=0)
 
 scale = ttk.Scale(bottomframe, from_=0, to=100, orient=HORIZONTAL, command=set_vol)
 scale.set(70)
 mixer.music.set_volume(0.7)
-scale.grid(row=0, column=2, pady=15, padx=30)
+scale.grid(row=6, column=0, pady=15, padx=30)
 
 
 def on_closing():
